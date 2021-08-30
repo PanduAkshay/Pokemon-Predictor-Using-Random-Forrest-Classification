@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block mainbody %}
+    <div class="border rounded my-3 py-2 rounded-lg offset-lg-1 col-lg-10 col-12 bg-light" >  
+        <h2 class="text-center text-primary" >{{name}}</h2>
+        <div  class="text-center my-2 animate__animated  animate__zoomInDown">
+            <img src="{{pic}}" alt="{{name}}_pic" style="width: 20rem;"/>
+        </div>
+
+        <h4>Results:</h4>
+        <div class="mb-3">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col" >#</th>
+                <th scope="col" >Your Input</th>
+                <th scope="col" >Actual</th>
+                <th scope="col" >?</th>
+            </tr>
+            <tr>
+                <th scope="row">Primary Type:</th>
+                <td>{{pData['ptype']}}</td>
+                <td >{{actual_data['ptype']}}</td>
+                {% if pData['ptype'] == actual_data['ptype'] %}
+                <td>&#10004;</td>
+                {% else %}
+                <td>&#10060;</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th scope="row">Secondary Type:</th>
+                <td>{{pData['stype']}}</td>
+                <td>{{actual_data['stype']}}</td>
+                {% if pData['stype'] == actual_data['stype'] %}
+                <td>&#10004;</td>
+                {% else %}
+                <td>&#10060;</td>
+                {% endif %}
+            </tr>
+            {% if pData['stype'] != actual_data['stype'] or pData['ptype'] != actual_data['ptype']  %}
+            <tr>
+                <td colspan="4">
+                    <small class="text-muted">*Please adjust the attack, defense, speed values to get accurate results...</small>
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        </div>
+
+        <h4 class="mt-2">Statistics:</h4>
+        <div class="col-md-8 offset-md-2" >
+            <canvas id="pokechart" width="400" height="400"></canvas>
+        </div>
+        
+        <div>
+            <a href="{{url_for('mainpage')}}">&lt;&lt; Go Back</a>
+        </div>
+    </div>
+
+
+
+{% endblock mainbody %}
+{% block scripts %}
+    <script>     
+        const data = {
+            labels: [
+            'Attack',
+            'Defense',
+            'Speed',
+            ],
+            datasets: [{
+            label: 'Your Input',
+            data: [{{pData['attack']}}, {{pData['defense']}}, {{pData['speed']}}],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+            }, {
+            label: 'Actual',
+            data: [{{actual_data['attack']}}, {{actual_data['defense']}}, {{actual_data['speed']}}],
+            fill: true,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)'
+            }]
+        };
+        const config = {
+            type: 'radar',
+            data: data,
+            options: {
+                elements: {
+                    line: {
+                    borderWidth: 3
+                    }
+                }
+            },
+        };
+
+        var canvas1 = document.getElementById('pokechart').getContext('2d');
+        var pokechart = new Chart(canvas1,config);
+    </script>
+{% endblock scripts %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block mainbody %}
+    <div  class="text-center my-2 animate__animated  animate__zoomInDown">
+        <img src="{{url_for('static', filename='pokeball/1.png')}}" class="img-fluid" style="width:25rem;"  alt="pokeball">
+    </div>
+    <div class="border rounded mb-3 rounded-lg offset-lg-1 col-lg-10 col-12 bg-light" >
+        <h3>Looking for a Pokemon?</h3>
+        <p>Input the characteristics and we will choose the best one for you...</p>
+        <form class="p-2" method="POST">
+            {{form.hidden_tag()}}
+            <fieldset class="form-group p-2">
+                <div class="form-group row py-2" >
+                    {{form.ptype.label(class="font-weight-bold col-md-2 col-4")}}
+                    {{form.ptype(class = "col form-select")}}
+                </div>
+                <div class="form-group row py-2" >
+                    {{form.stype.label(class="font-weight-bold  col-md-2 col-4")}}
+                    {{form.stype(class = "col form-select")}}
+                </div>
+                <div class="form-group row py-2" >
+                    {{form.attack.label(class=" font-weight-bold col-md-2 col-4")}}
+                    {{form.attack(class = "col form-control-range", step = '0.01', min="0", max="100")}}
+                </div>
+                <div class="form-group row py-2" >
+                    {{form.speed.label(class="font-weight-bold col-md-2 col-4")}}
+                    {{form.speed(class = "col form-control-range", step = '0.01', min="0", max="100")}}
+                </div>
+                <div class="form-group row py-2" >
+                    {{form.defense.label(class="font-weight-bold col-md-2 col-4")}}
+                    {{form.defense(class = "col form-control-range", step = '0.01', min="0", max="100")}}
+                </div>
+            </fieldset>
+            <div class="form-group text-center" >
+                {{form.submit(class = "btn btn-outline-primary btn-lg")}}
+            </div>            
+        </form>
+    </div>
+{% endblock mainbody %}
