@@ -17,4 +17,5 @@
 ## Datasets used
 1) For data: https://www.kaggle.com/abcsds/pokemon?select=Pokemon.csv
 2) For Images: https://www.kaggle.com/arenagrenade/the-complete-pokemon-images-data-set
+
 Note: some changes were made to the csv files and also to the filenames and quality of the images to fit the needs of the application. 
