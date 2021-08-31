@@ -1,7 +1,7 @@
 # Pokemon-Predictor-Using-Random-Forrest-Classifier
-## Based on the input given by the user this web-application predicts the pokemon.
+## Based on the inputs given by the user this web-application predicts the pokemon.
 
-## Intructions to run the web-application
+## Instructions to run the web-application
 
 1) Install python 3.6 or above on your device
 2) Setup a python virtual environment and activate it.(optional)
