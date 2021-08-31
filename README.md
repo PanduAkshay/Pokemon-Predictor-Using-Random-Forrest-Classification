@@ -1,5 +1,5 @@
 # Pokemon-Predictor-Using-Random-Forrest-Classifier
-## Based on the input given by the user this web=application predicts the pokemon.
+## Based on the input given by the user this web-application predicts the pokemon.
 
 ## Intructions to run the web-application
 
